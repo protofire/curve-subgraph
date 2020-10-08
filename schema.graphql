@@ -1,0 +1,161 @@
+type SystemInfo @entity {
+  id: ID!
+
+  registryOwner: Bytes
+
+  exchangeCount: BigInt!
+  poolCount: BigInt!
+  tokenCount: BigInt!
+
+  updated: BigInt!
+  updatedAtBlock: BigInt!
+  updatedAtTransaction: Bytes!
+}
+
+type Pool @entity {
+  id: ID!
+
+  " Swap contract address "
+  address: Bytes!
+
+  " Number of coins composing the pool "
+  coinCount: Int!
+
+  " Wrapped coins involved in the pool "
+  coins: [Token!]!
+
+  " Plain coins (ERC20) "
+  underlyingCoins: [Token!]!
+
+  balances: [BigInt!]!
+
+  " Address of the token representing LP share "
+  poolToken: Token
+
+  " Amplification coefficient multiplied by n * (n - 1) "
+  A: BigInt!
+
+  " Fee to charge for exchanges "
+  fee: BigDecimal!
+
+  "  "
+  adminFee: BigDecimal!
+
+  " Average dollar value of pool token "
+  virtualPrice: BigDecimal!
+
+  rateMethodId: Bytes
+
+  " Admins address "
+  owner: Bytes!
+
+  addedAt: BigInt!
+  addedAtBlock: BigInt!
+  addedAtTransaction: Bytes!
+
+  removedAt: BigInt
+  removedAtBlock: BigInt
+  removedAtTransaction: Bytes
+
+  events: [PoolEvent!] @derivedFrom(field: "pool")
+
+  exchanges: [Exchange!] @derivedFrom(field: "pool")
+}
+
+interface PoolEvent @entity {
+  pool: Pool!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type FeeChangeChangelog implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  value: BigDecimal!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type AdminFeeChangelog implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  value: BigDecimal!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type AmplificationCoeffChangelog implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  value: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type AddLiquidityEvent implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  provider: Bytes!
+  tokenAmounts: [BigInt!]!
+  fees: [BigInt!]!
+  invariant: BigInt!
+  tokenSupply: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type RemoveLiquidityEvent implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  provider: Bytes!
+  tokenAmounts: [BigInt!]!
+  fees: [BigInt!]!
+  invariant: BigInt
+  tokenSupply: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type Exchange implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  buyer: Bytes!
+  soldId: BigInt!
+  tokensSold: BigInt!
+  boughtId: BigInt!
+  tokensBought: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type TransferOwnershipEvent implements PoolEvent @entity {
+  id: ID!
+  pool: Pool!
+  newAdmin: Bytes!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type Token @entity {
+  id: ID!
+  address: Bytes!
+  decimals: BigInt!
+  name: String
+  symbol: String
+}

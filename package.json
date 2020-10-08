@@ -1,0 +1,19 @@
+{
+  "name": "curve-subgraph",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "auth": "graph auth https://api.thegraph.com/deploy/",
+    "build": "graph build",
+    "codegen": "graph codegen",
+    "create-local": "graph create --node http://localhost:8020/ protofire/curve",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ protofire/curve",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 protofire/curve",
+    "remove-local": "graph remove --node http://localhost:8020/ protofire/curve"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.18.0",
+    "@graphprotocol/graph-ts": "0.18.1",
+    "@protofire/subgraph-toolkit": "0.0.1"
+  }
+}
