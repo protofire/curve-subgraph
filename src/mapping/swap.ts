@@ -28,7 +28,10 @@ export function handleAddLiquidity(event: AddLiquidity): void {
   pool.save()
 
   // Register liquidity event
-  let log = new AddLiquidityEvent(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+  let log = new AddLiquidityEvent(
+    'add_liquidity' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+  )
+
   log.pool = pool.id
   log.provider = event.params.provider
   log.tokenAmounts = event.params.token_amounts
@@ -50,7 +53,10 @@ export function handleRemoveLiquidity(event: RemoveLiquidity): void {
   pool.save()
 
   // Register liquidity event
-  let log = new RemoveLiquidityEvent(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+  let log = new RemoveLiquidityEvent(
+    'remove_liquidity' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+  )
+
   log.pool = pool.id
   log.provider = event.params.provider
   log.tokenAmounts = event.params.token_amounts
@@ -71,7 +77,10 @@ export function handleRemoveLiquidityImbalance(event: RemoveLiquidityImbalance):
   pool.save()
 
   // Register liquidity event
-  let log = new RemoveLiquidityEvent(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+  let log = new RemoveLiquidityEvent(
+    'remove_liquidity_imbalance-' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+  )
+
   log.pool = pool.id
   log.provider = event.params.provider
   log.tokenAmounts = event.params.token_amounts
@@ -93,7 +102,10 @@ export function handleNewAdmin(event: NewAdmin): void {
   pool.save()
 
   // Register changelog
-  let log = new TransferOwnershipEvent(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+  let log = new TransferOwnershipEvent(
+    'transfer-' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+  )
+
   log.pool = pool.id
   log.newAdmin = event.params.admin
 
@@ -114,7 +126,10 @@ export function handleNewParameters(event: NewParameters): void {
     pool.A = event.params.A
 
     // Register changelog
-    let log = new AmplificationCoeffChangelog(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+    let log = new AmplificationCoeffChangelog(
+      'A-' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+    )
+
     log.pool = pool.id
     log.value = event.params.A
 
@@ -129,7 +144,8 @@ export function handleNewParameters(event: NewParameters): void {
     pool.fee = newFee
 
     // Register changelog
-    let log = new FeeChangeChangelog(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+    let log = new FeeChangeChangelog('fee-' + event.transaction.hash.toHexString() + '-' + event.logType.toString())
+
     log.pool = pool.id
     log.value = newFee
 
@@ -144,7 +160,10 @@ export function handleNewParameters(event: NewParameters): void {
     pool.fee = newAdminFee
 
     // Register changelog
-    let log = new AdminFeeChangelog(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+    let log = new AdminFeeChangelog(
+      'admin_fee-' + event.transaction.hash.toHexString() + '-' + event.logType.toString(),
+    )
+
     log.pool = pool.id
     log.value = newAdminFee
 
@@ -162,7 +181,10 @@ export function handleTokenExchange(event: TokenExchange): void {
   let pool = getOrCreatePool(event.address, event.block, event.transaction)
 
   if (pool != null) {
-    let exchange = new Exchange(event.transaction.hash.toHexString() + '-' + event.logType.toString())
+    let exchange = new Exchange(
+      pool.id + '-' + event.params.sold_id.toString() + '-' + event.params.bought_id.toString(),
+    )
+
     exchange.pool = pool.id
     exchange.buyer = event.params.buyer
     exchange.soldId = event.params.sold_id
