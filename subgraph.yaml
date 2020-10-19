@@ -629,3 +629,129 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+
+  - name: Swap/LinkUSD
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: StableSwap
+      address: '0xe7a24ef0c5e95ffb0f6684b813a78f2a3ad7d171'
+      startBlock: 11011556
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mapping/swap.ts
+      abis:
+        - name: StableSwap
+          file: ./abis/StableSwap.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      entities:
+        - AddLiquidityEvent
+        - AdminFeeChangelog
+        - AmplificationCoeffChangelog
+        - Exchange
+        - FeeChangeChangelog
+        - Pool
+        - RemoveLiquidityEvent
+        - SystemInfo
+        - TransferOwnershipEvent
+        - Token
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: NewAdmin(indexed address)
+          handler: handleNewAdmin
+        - event: NewParameters(uint256,uint256,uint256)
+          handler: handleNewParameters
+        - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchange
+
+  - name: Swap/MUSD
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: StableSwap
+      address: '0x4f062658eaaf2c1ccf8c8e36d6824cdf41167956'
+      startBlock: 11005604
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mapping/swap.ts
+      abis:
+        - name: StableSwap
+          file: ./abis/StableSwap.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      entities:
+        - AddLiquidityEvent
+        - AdminFeeChangelog
+        - AmplificationCoeffChangelog
+        - Exchange
+        - FeeChangeChangelog
+        - Pool
+        - RemoveLiquidityEvent
+        - SystemInfo
+        - TransferOwnershipEvent
+        - Token
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: NewAdmin(indexed address)
+          handler: handleNewAdmin
+        - event: NewParameters(uint256,uint256,uint256)
+          handler: handleNewParameters
+        - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchange
+
+  - name: Swap/RSV
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: StableSwap
+      address: '0xc18cc39da8b11da8c3541c598ee022258f9744da'
+      startBlock: 11037531
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mapping/swap.ts
+      abis:
+        - name: StableSwap
+          file: ./abis/StableSwap.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      entities:
+        - AddLiquidityEvent
+        - AdminFeeChangelog
+        - AmplificationCoeffChangelog
+        - Exchange
+        - FeeChangeChangelog
+        - Pool
+        - RemoveLiquidityEvent
+        - SystemInfo
+        - TransferOwnershipEvent
+        - Token
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: NewAdmin(indexed address)
+          handler: handleNewAdmin
+        - event: NewParameters(uint256,uint256,uint256)
+          handler: handleNewParameters
+        - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchange
