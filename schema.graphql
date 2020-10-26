@@ -128,7 +128,35 @@ type RemoveLiquidityEvent implements PoolEvent @entity {
   transaction: Bytes!
 }
 
-type Exchange implements PoolEvent @entity {
+interface Exchange {
+  pool: Pool!
+
+  buyer: Bytes!
+  soldId: BigInt!
+  tokensSold: BigInt!
+  boughtId: BigInt!
+  tokensBought: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type TokenExchange implements Exchange @entity {
+  id: ID!
+  pool: Pool!
+  buyer: Bytes!
+  soldId: BigInt!
+  tokensSold: BigInt!
+  boughtId: BigInt!
+  tokensBought: BigInt!
+
+  block: BigInt!
+  timestamp: BigInt!
+  transaction: Bytes!
+}
+
+type UnderlyingTokenExchange implements Exchange @entity {
   id: ID!
   pool: Pool!
   buyer: Bytes!

@@ -6,17 +6,19 @@ import {
   NewParameters,
   RemoveLiquidity,
   RemoveLiquidityImbalance,
-  TokenExchange,
+  TokenExchange as TokenExchangeEvent,
+  TokenExchangeUnderlying as TokenExchangeUnderlyingEvent,
 } from '../../generated/Curve/StableSwap'
 
 import {
   AddLiquidityEvent,
   AdminFeeChangelog,
   AmplificationCoeffChangelog,
-  Exchange,
   FeeChangeChangelog,
   RemoveLiquidityEvent,
+  TokenExchange,
   TransferOwnershipEvent,
+  UnderlyingTokenExchange,
 } from '../../generated/schema'
 
 import { getBalances, getOrCreatePool, getSystemInfo, toFeeDecimal } from '../entities'
@@ -177,12 +179,39 @@ export function handleNewParameters(event: NewParameters): void {
   pool.save()
 }
 
-export function handleTokenExchange(event: TokenExchange): void {
+export function handleTokenExchange(event: TokenExchangeEvent): void {
   let pool = getOrCreatePool(event.address, event.block, event.transaction)
 
   if (pool != null) {
-    let exchange = new Exchange(
-      pool.id + '-' + event.params.sold_id.toString() + '-' + event.params.bought_id.toString(),
+    let exchange = new TokenExchange(
+      pool.id + '-c-' + event.params.sold_id.toString() + '-' + event.params.bought_id.toString(),
+    )
+
+    exchange.pool = pool.id
+    exchange.buyer = event.params.buyer
+    exchange.soldId = event.params.sold_id
+    exchange.tokensSold = event.params.tokens_sold
+    exchange.boughtId = event.params.bought_id
+    exchange.tokensBought = event.params.tokens_bought
+
+    exchange.block = event.block.number
+    exchange.timestamp = event.block.timestamp
+    exchange.transaction = event.transaction.hash
+
+    exchange.save()
+
+    let system = getSystemInfo(event.block, event.transaction)
+    system.exchangeCount = system.exchangeCount.plus(integer.ONE)
+    system.save()
+  }
+}
+
+export function handleTokenExchangeUnderlying(event: TokenExchangeUnderlyingEvent): void {
+  let pool = getOrCreatePool(event.address, event.block, event.transaction)
+
+  if (pool != null) {
+    let exchange = new UnderlyingTokenExchange(
+      pool.id + '-u-' + event.params.sold_id.toString() + '-' + event.params.bought_id.toString(),
     )
 
     exchange.pool = pool.id

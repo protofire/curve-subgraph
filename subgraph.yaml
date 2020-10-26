@@ -83,6 +83,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/USDT
     kind: ethereum/contract
@@ -125,6 +127,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/PAX
     kind: ethereum/contract
@@ -167,6 +171,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/y
     kind: ethereum/contract
@@ -209,6 +215,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/BUSD
     kind: ethereum/contract
@@ -251,6 +259,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/sUSDv2
     kind: ethereum/contract
@@ -293,6 +303,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/REN
     kind: ethereum/contract
@@ -335,6 +347,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/sBTC
     kind: ethereum/contract
@@ -377,6 +391,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/HBTC
     kind: ethereum/contract
@@ -419,6 +435,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/3pool
     kind: ethereum/contract
@@ -461,6 +479,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/GUSD
     kind: ethereum/contract
@@ -503,6 +523,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/HUSD
     kind: ethereum/contract
@@ -545,6 +567,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/USDK
     kind: ethereum/contract
@@ -587,6 +611,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/USDN
     kind: ethereum/contract
@@ -629,6 +655,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/LinkUSD
     kind: ethereum/contract
@@ -671,6 +699,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/MUSD
     kind: ethereum/contract
@@ -713,6 +743,8 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
 
   - name: Swap/RSV
     kind: ethereum/contract
@@ -755,3 +787,5 @@ dataSources:
           handler: handleNewParameters
         - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
