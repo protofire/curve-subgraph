@@ -789,3 +789,47 @@ dataSources:
           handler: handleTokenExchange
         - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
           handler: handleTokenExchangeUnderlying
+
+  - name: Swap/tBTC
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: StableSwap
+      address: '0xc25099792e9349c7dd09759744ea681c7de2cb66'
+      startBlock: 11095928
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mapping/swap.ts
+      abis:
+        - name: StableSwap
+          file: ./abis/StableSwap.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      entities:
+        - AddLiquidityEvent
+        - AdminFeeChangelog
+        - AmplificationCoeffChangelog
+        - Exchange
+        - FeeChangeChangelog
+        - Pool
+        - RemoveLiquidityEvent
+        - SystemInfo
+        - TransferOwnershipEvent
+        - Token
+      eventHandlers:
+        - event: AddLiquidity(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleAddLiquidity
+        - event: RemoveLiquidity(indexed address,uint256[2],uint256[2],uint256)
+          handler: handleRemoveLiquidity
+        - event: RemoveLiquidityImbalance(indexed address,uint256[2],uint256[2],uint256,uint256)
+          handler: handleRemoveLiquidityImbalance
+        - event: NewAdmin(indexed address)
+          handler: handleNewAdmin
+        - event: NewParameters(uint256,uint256,uint256)
+          handler: handleNewParameters
+        - event: TokenExchange(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchange
+        - event: TokenExchangeUnderlying(indexed address,int128,uint256,int128,uint256)
+          handler: handleTokenExchangeUnderlying
