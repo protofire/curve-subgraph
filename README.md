@@ -20,6 +20,7 @@ This subgraph provides information about the following Curve liquidity pools:
 15. LinkUSD metapool
 16. MUSD metapool
 17. RSV metapool
+18. tBTC metapool
 
 
 Note: this subgraph doesn't provide transfer data about neither ERC20 nor LP tokens because that would imply indexing 
