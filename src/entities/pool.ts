@@ -36,7 +36,7 @@ export function getOrCreatePool(address: Address, block: ethereum.Block, tx: eth
 
     pool.owner = info.owner
 
-    pool.virtualPrice = decimal.convert(info.virtualPrice)
+    pool.virtualPrice = decimal.fromBigInt(info.virtualPrice)
 
     pool.addedAt = block.timestamp
     pool.addedAtBlock = block.number
