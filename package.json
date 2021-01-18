@@ -1,6 +1,7 @@
 {
   "name": "curve-subgraph",
   "version": "0.0.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/deploy/",
